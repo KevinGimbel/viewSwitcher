@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Full-Page &mdash; ViewSwitch.js by Kevin Gimbel</title>
+  <meta chatset="utf-8" />
+  <base url="http://localhost:8000/">
+  <meta name="theme-color" content="#E91E63" />
+  <meta name="viewport" content="width=device-width" />
+<style type="text/css">
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;  
+  }
+  
+  :root {
+    font-size: 16px;  
+  }
+
+  body {
+    font: 1rem/1.56 Arial, Helvetica, sans-serif;
+    color: #000;
+    background: #eee;  
+  }
+
+  section {
+    padding: 1.25em;
+  }
+
+  .credit {
+    font-size: .75rem;
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 1rem;
+  }
+
+  .credit a {
+    color: #666;
+    text-decoration: none;
+    border-bottom: 1px solid #333;  
+    transition: color linear .25s;
+  }
+
+  .credit a:hover {
+    color: #333;  
+  }
+
+  .site__navigation {
+    height: 4em;
+    width: 96vw;
+    background: #ececec;  
+    padding: 1rem;
+  }
+
+  .site__navigation li {
+    text-transform: capitalize;
+    display: inline-block;
+    padding: .5em 2em;
+    background: #fff;
+    border-radius: 3px;
+    margin-right: 1rem;
+  }
+  
+  .site__navigation li a {
+    color: deeppink;
+    text-decoration: none;  
+  }
+
+  [data-view] {
+    width: 100vw;
+    background: deeppink;;  
+    position: absolute;
+    top: 4em;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  [data-view]:nth-child(1) {
+    color: #fff;  
+  }
+
+  [data-view]:nth-child(2) {
+    background: #02d0ef;  
+  }
+
+  [data-view]:nth-child(3) {
+    background: #f1f1f1;
+  }
+  
+  .demo--text {
+    font-size: 1.4rem;  
+    overflow-x: hidden;
+  }
+
+  .demo--text h3 {
+    padding: 1rem 15rem;  
+  }
+
+  .demo--text p {
+    padding: 0 15rem;  
+  }
+</style>
+
+</head>
+<body>
+<header class="site__header">
+<nav id="nav" class="site__navigation" id="navigation"></nav>
+
+<div class="credit">
+<a href="https://github.com/kevingimbel/viewSwitcher">viewSwitcher v0.0.1</a>
+</div>
+</header>
+<main class="wrapper">
+
+<section data-view="start">
+<h1>Build full-page, single-site Applications</h1>
+<h3>Powered by ViewSwitcher.js</h3>
+<p>A basic instruction on how to build single, full-page Applications using ViewSwitcher.js for handling the displaying of all views.</p>
+</section>
+
+
+<section data-view="howto">
+<h3>How to</h3>
+<p>Building single-page Applications or pages is easy using ViewSwitcher, all you need is the latest copy
+of ViewSwitcher and some extra CSS.
+</p>
+<pre><code>
+// example code; adjust for your needs!
+  [data-view] {
+    width: 100vw;
+    height: 100vh;
+    padding: 20%;  
+  }
+</code></pre>
+<p>Since ViewSwitcher hides <b>all</b> inactive views by default, this will make your Application or Website look like it's changing 
+pages, this can be used to simulate a classic feel while being lightning fast!</p>
+</section>
+
+<section data-view="demo" class="demo--text">
+  <h3>More demo content</h3>
+  <p>And here's some more demo content.</p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, odio, dicta. Consectetur quia quisquam, dolorem, possimus temporibus nesciunt doloru quaerat, eius voluptate voluptas magni voluptatibus officia laudantium iste necessitatibus ipsam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, odio, dicta. Consectetur quia quisquam, dolorem, possimus temporibus nesciunt doloru quaerat, eius voluptate voluptas magni voluptatibus officia laudantium iste necessitatibus ipsam Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, odio, dicta. Consectetur quia quisquam, dolorem, possimus temporibus nesciunt doloru quaerat, eius voluptate voluptas magni voluptatibus officia laudantium iste necessitatibus ipsam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, odio, dicta. Consectetur quia quisquam, dolorem, possimus temporibus nesciunt doloru quaerat, eius voluptate voluptas magni voluptatibus officia laudantium iste necessitatibus ipsam.</p>
+
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, odio, dicta. Consectetur quia quisquam, dolorem, possimus temporibus nesciunt doloru quaerat, eius voluptate voluptas magni voluptatibus officia laudantium iste necessitatibus ipsam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, odio, dicta. Consectetur quia quisquam, dolorem, possimus temporibus nesciunt doloru quaerat, eius voluptate voluptas magni voluptatibus officia laudantium iste necessitatibus ipsam Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, odio, dicta. Consectetur quia quisquam, dolorem, possimus temporibus nesciunt doloru quaerat, eius voluptate voluptas magni voluptatibus officia laudantium iste necessitatibus ipsam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, odio, dicta. Consectetur quia quisquam, dolorem, possimus temporibus nesciunt doloru quaerat, eius voluptate voluptas magni voluptatibus officia laudantium iste necessitatibus ipsam.</p>
+  
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, odio, dicta. Consectetur quia quisquam, dolorem, possimus temporibus nesciunt doloru quaerat, eius voluptate voluptas magni voluptatibus officia laudantium iste necessitatibus ipsam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, odio, dicta. Consectetur quia quisquam, dolorem, possimus temporibus nesciunt doloru quaerat, eius voluptate voluptas magni voluptatibus officia laudantium iste necessitatibus ipsam Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, odio, dicta. Consectetur quia quisquam, dolorem, possimus temporibus nesciunt doloru quaerat, eius voluptate voluptas magni voluptatibus officia laudantium iste necessitatibus ipsam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, odio, dicta. Consectetur quia quisquam, dolorem, possimus temporibus nesciunt doloru quaerat, eius voluptate voluptas magni voluptatibus officia laudantium iste necessitatibus ipsam.</p>
+
+</section>
+
+
+<!--
+section[data-view]
+-->
+
+</main>
+<script type="text/javascript" src="/src/viewswitcher.js"></script>
+
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+  View.initActive('start');
+
+  var nav = document.querySelector('#nav');
+  nav.innerHTML = View.getHtmlMenu('nav__item');
+  nav.addEventListener('click', function(event) {
+    event.preventDefault();
+    // viva la regex!
+    var url = event.target.href.match(/#[a-zA-Z0-9]+/)[0].toString().replace('#', '');
+    console.log(url);
+    View.setActive(url);  
+  });
+});
+</script>
+
+</body>
+</html>

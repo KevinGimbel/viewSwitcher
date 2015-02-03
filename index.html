@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ViewSwitch</title>
+  <meta chatset="utf-8" />
+  <meta name="theme-color" content="#E91E63" />
+  <meta name="viewport" content="width=device-width" />
+  <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500' rel='stylesheet' type='text/css'>
+  <link href="style.css" rel="stylesheet"> 
+<style type="text/css">
+  section {
+    padding: 1.25em;
+  }
+
+  .site__navigation li {
+    text-transform: capitalize;
+  }
+</style>
+
+</head>
+<body>
+<header class="site__header">
+  <h1>ViewSwitch <small>v.0.0.2</small></h1>
+<nav id="nav" class="site__navigation" id="navigation"></nav>
+</header>
+<main class="wrapper">
+
+<section data-view="home">
+ViewSwitcher is a simple, "plug-in", dependencie free module to handle different views and "routing" through URL
+manipulation. See the <a href="/#features" data-view-link="features">Feature List</a> for more details.
+</section>
+
+<section data-view="features" data-view-exclude="true">
+  <h2>Feature List</h2>
+  
+  <h3>Plug 'n Play</h3>
+  <p>Load the libary, add a navigation wrapper (if wanted), set a default view and start adding your views - that's it.</p>
+
+  <h3>Commented code</h3>
+  <p>Every line of code has a short comment to describe what it does. Extend/rewrite as you wish!</p>
+
+  <h3>URL Handling</h3>
+  <p>ViewSwitcher automatically handles "URLs", so yourdomain.com/#viewname will load the associated view.</p>
+
+  <h3>Title handling</h3>
+  <p>The page title is automatically replaced based on the current view.</p>
+</section>
+
+
+<section data-view="documentation">
+<h2>Documentation</h2>
+
+<p>A quick feature overview.</p>
+
+<h3>Markup</h3>
+<p>To use ViewSwitcher simply include the libary and start writing your single-page site. Every view can be represented
+as a section as seen below</p>
+<div class="highlight">
+<pre class="language-html"><code>
+  &lt;section data-view="myview"&gt;
+    This is my view, my url will be your.tld/#myview
+  &lt;/section&gt;
+</code></pre>
+</div>
+<p>As you can see the <code>data-view</code> attribute is turned into the URL.</p>
+
+<h3>Generating Menus</h3>
+<p>To generate a menu you can specify a navigation wrapper and use the <code>View.getHtmlMenu()</code> function. The function accepts a string which is used as
+class name for every nav item and returns a ul containing li's as navigation.</p>
+<div class="highlight">
+<pre class="language-javascript"><code>
+  var menu = document.querySelector('nav');
+  menu.innerHtml = View.getHtmlMenu('nav__item');
+</code></pre>
+</div>
+
+
+<h3>Excluding Views</h3>
+<p>To exclude a view, simply add a <code>data-view-exclude="true"</code> attribute to the view container.</p>
+<div class="highlight">
+<pre class="language-html"><code>
+  &lt;section data-view="myview" data-view-exclude="true"&gt;
+    This view won't appear inside the generated menu.
+  &lt;/section&gt;
+</code></pre>
+</div>
+
+
+<h3>Init Active</h3>
+<p>There's a <code>initActive</code> function to automatically set a view as active if no hash is given.</p>
+<div class="highlight">
+<pre class="language-javascript"><code>
+View.initActive('home');
+</code></pre>
+</div>
+
+
+</section>
+
+
+<section data-view="changelog">
+<h3>Changelog</h3>
+
+<ul>v0.0.2
+  <li>- added better URL handling</li>
+  <li>- added init function to set variables</li>
+  <li>- initial cross-browser testing</li>
+</ul>
+
+<ul>v0.0.1
+  <li>Initial release</li>
+</ul>
+</section>
+
+
+<section data-view="error">Yikks! There has been an error and I'm really sorry.</section>
+</main>
+<script type="text/javascript" src="src/viewswitcher.js"></script>
+
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+  View.initActive('home');
+
+  var nav = document.querySelector('#nav');
+  nav.innerHTML = View.getHtmlMenu('nav__item');
+  nav.addEventListener('click', function(event) {
+    event.preventDefault();
+    // viva la regex!
+    var url = event.target.href.match(/#[a-zA-Z0-9]+/)[0].toString().replace('#', '');
+    View.setActive(url);  
+  });
+  
+  // Active a view if a link has a data-view-link attribute.
+  // the data-view-link attribute will determine which view to
+  // activate.
+  document.addEventListener('click', function(event) {
+    if(event.target.dataset.viewLink) {
+      event.preventDefault();
+      var url = event.target.dataset.viewLink;    
+      View.setActive(url);
+    }  
+  });
+});
+</script>
+
+</body>
+</html>
