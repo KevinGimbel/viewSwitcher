@@ -5,7 +5,6 @@
   <meta chatset="utf-8" />
   <meta name="theme-color" content="#E91E63" />
   <meta name="viewport" content="width=device-width" />
-  <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500' rel='stylesheet' type='text/css'>
   <link href="style.css" rel="stylesheet"> 
 <style type="text/css">
   section {
@@ -20,30 +19,48 @@
 </head>
 <body>
 <header class="site__header">
-  <h1>ViewSwitch <small>v.0.0.2</small></h1>
+  <h1>ViewSwitch <small>v.0.0.3</small></h1>
 <nav id="nav" class="site__navigation" id="navigation"></nav>
 </header>
 <main class="wrapper">
 
 <section data-view="home">
-ViewSwitcher is a simple, "plug-in", dependencie free module to handle different views and "routing" through URL
-manipulation. See the <a href="/#features" data-view-link="features">Feature List</a> for more details.
+<p>ViewSwitcher is a dependencie free, isolated module to handle different "views" and very basic
+"routing" through URL hashes. ViewSwitcher exposes the global Variable <code>View</code> that holds
+all its functionallity.</p>
+
+<p>You can see the <a href="/#features" data-view-link="features">Feature List</a> for more
+details.</p>
+
+<p>This script is under more or less active development and as development moves, there may be
+breaking changes. As I try to go with <a href="http://semver.org">semver</a> you'll see at the
+version number if this is a breaking release nor not.</p>
 </section>
 
 <section data-view="features" data-view-exclude="true">
   <h2>Feature List</h2>
   
   <h3>Plug 'n Play</h3>
-  <p>Load the libary, add a navigation wrapper (if wanted), set a default view and start adding your views - that's it.</p>
+  <p>Load the module, add a navigation wrapper (if wanted), set a default view and start adding your views - that's it.</p>
+  <p>Each view is represented by a Block Element (<code>div</code>, <code>article</code>,
+  <code>section</code>, etc.) and add a <code>data-view</code> Attribute to it. This Attribute
+  determines what hash this View is loaded by.</p>
+  <pre><code>
+   // loaded by myurl.com/#home
+    &lt;div data-view="home">&lt;/div>
+  </code></pre>
 
   <h3>Commented code</h3>
-  <p>Every line of code has a short comment to describe what it does. Extend/rewrite as you wish!</p>
+  <p>I tried to comment the code but I suck at it. Everytime I'm working on viewSwitcher I try
+  adding more detailed comments. Extend/rewrite as you wish!</p>
 
   <h3>URL Handling</h3>
-  <p>ViewSwitcher automatically handles "URLs", so yourdomain.com/#viewname will load the associated view.</p>
+  <p>ViewSwitcher automatically handles "URLs", so yourdomain.com/#viewname will load the associated
+  view. This noobish routing is the most basic handling I could think of. </p>
 
   <h3>Title handling</h3>
-  <p>The page title is automatically replaced based on the current view.</p>
+  <p>The page title is automatically replaced based on the current view. Currently, this cannot be
+  turned off. The title is always composed from <code>VIEW_NAME &mdash; ORIGINAL_TITLE</code></p>
 </section>
 
 
@@ -76,12 +93,37 @@ class name for every nav item and returns a ul containing li's as navigation.</p
 
 
 <h3>Excluding Views</h3>
-<p>To exclude a view, simply add a <code>data-view-exclude="true"</code> attribute to the view container.</p>
+<p>To exclude a view, simply add a <code>data-view-exclude="true"</code> attribute to the view
+container. It actually doesn't even need a string passed, viewSwitcher only checks if
+<code>data-view-exclude</code> is set - the value doesn't matter.</p>
 <div class="highlight">
 <pre class="language-html"><code>
   &lt;section data-view="myview" data-view-exclude="true"&gt;
     This view won't appear inside the generated menu.
   &lt;/section&gt;
+</code></pre>
+</div>
+
+
+<h3>In-page view</h3>
+<p>To active view links inside the page an attribute, <code>data-view-link</code>, can be added to
+the <code>a</code>-Tag. Another snippet of (optional) JavaScript then handles clicks on these views.
+The <code>data-view-link</code> attribute then holds the name of the view.
+<b>NOTE:</b> This is not final and will hopefully change to something better.
+</p>
+
+<div class="highlight">
+<pre class="language-html"><code>
+  &lt;a href="#about" data-view-link="about">&lt;/a>
+  
+  // The JavaScript Snippet needed to make this work
+  document.addEventListener('click', function(event) {
+    if(event.target.dataset.viewLink) {
+      event.preventDefault();
+      var url = event.target.dataset.viewLink; 
+      View.setActive(url);
+    }  
+  });
 </code></pre>
 </div>
 
@@ -101,10 +143,17 @@ View.initActive('home');
 <section data-view="changelog">
 <h3>Changelog</h3>
 
+<ul>v0.0.3
+  <li>fixed <code>window and document</code> not being passed to the IIFE.</li>
+  <li>added <code>data-view-exclude</code> Attribute</li>
+  <li>added documentation for in-page viewSwitcher links and how they're handled at the moment.</li>
+	<li>kept on commenting and documenting</li>
+</ul>
+
 <ul>v0.0.2
-  <li>- added better URL handling</li>
-  <li>- added init function to set variables</li>
-  <li>- initial cross-browser testing</li>
+  <li>added better URL handling</li>
+  <li>added init function to set variables</li>
+  <li>initial cross-browser testing</li>
 </ul>
 
 <ul>v0.0.1
@@ -136,7 +185,7 @@ document.addEventListener('DOMContentLoaded', function() {
   document.addEventListener('click', function(event) {
     if(event.target.dataset.viewLink) {
       event.preventDefault();
-      var url = event.target.dataset.viewLink;    
+      var url = event.target.dataset.viewLink; 
       View.setActive(url);
     }  
   });
