@@ -5,7 +5,7 @@
   <meta chatset="utf-8" />
   <meta name="theme-color" content="#E91E63" />
   <meta name="viewport" content="width=device-width" />
-  <link href="style.css" rel="stylesheet"> 
+  <link href="style.css" rel="stylesheet">
 <style type="text/css">
   section {
     padding: 1.25em;
@@ -25,7 +25,7 @@
 <main class="wrapper">
 
 <section data-view="home">
-<p>ViewSwitcher is a dependencie free, isolated module to handle different "views" and very basic
+<p>ViewSwitcher is a dependency free, isolated module to handle different "views" and very basic
 "routing" through URL hashes. ViewSwitcher exposes the global Variable <code>View</code> that holds
 all its functionallity.</p>
 
@@ -35,11 +35,13 @@ details.</p>
 <p>This script is under more or less active development and as development moves, there may be
 breaking changes. As I try to go with <a href="http://semver.org">semver</a> you'll see at the
 version number if this is a breaking release nor not.</p>
+
+<p>This is open source at <a href="https://github.com/kevingimbel/viewSwitcher">GitHub</a></p>
 </section>
 
 <section data-view="features" data-view-exclude="true">
   <h2>Feature List</h2>
-  
+
   <h3>Plug 'n Play</h3>
   <p>Load the module, add a navigation wrapper (if wanted), set a default view and start adding your views - that's it.</p>
   <p>Each view is represented by a Block Element (<code>div</code>, <code>article</code>,
@@ -115,14 +117,14 @@ The <code>data-view-link</code> attribute then holds the name of the view.
 <div class="highlight">
 <pre class="language-html"><code>
   &lt;a href="#about" data-view-link="about">&lt;/a>
-  
+
   // The JavaScript Snippet needed to make this work
   document.addEventListener('click', function(event) {
     if(event.target.dataset.viewLink) {
       event.preventDefault();
-      var url = event.target.dataset.viewLink; 
+      var url = event.target.dataset.viewLink;
       View.setActive(url);
-    }  
+    }
   });
 </code></pre>
 </div>
@@ -176,18 +178,18 @@ document.addEventListener('DOMContentLoaded', function() {
     event.preventDefault();
     // viva la regex!
     var url = event.target.href.match(/#[a-zA-Z0-9]+/)[0].toString().replace('#', '');
-    View.setActive(url);  
+    View.setActive(url);
   });
-  
+
   // Active a view if a link has a data-view-link attribute.
   // the data-view-link attribute will determine which view to
   // activate.
   document.addEventListener('click', function(event) {
     if(event.target.dataset.viewLink) {
       event.preventDefault();
-      var url = event.target.dataset.viewLink; 
+      var url = event.target.dataset.viewLink;
       View.setActive(url);
-    }  
+    }
   });
 });
 </script>
