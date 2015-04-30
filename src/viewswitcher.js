@@ -5,7 +5,11 @@ var View = (function(window, document) {
       pageTitle = document.querySelector('head title'),
       originalTitle = pageTitle.textContent,
       TITLE_DEVIDER = '&mdash;',
-      ERROR_VIEW = document.querySelector('[' + VIEW_ATTRIBUTE + '="error"]'); 
+      ERROR_VIEW = document.querySelector('[' + VIEW_ATTRIBUTE + '="error"]');
+
+  var options = {
+    changeTitle: true 
+  }
   
   // select all the views
   var views = document.querySelectorAll('[' + VIEW_ATTRIBUTE + ']');
@@ -19,10 +23,24 @@ var View = (function(window, document) {
 
 
   // SETTERS
+  
+  //
+  // Set Options to configure viewSwitcher before
+  // using it. This needs to be called first!
+  // 
+  // @param {Object} - Options Object 
+  //
+  function _setOptions(opts) {
+    options = {
+      changeTitle: opts.changeTitle
+    }  
+  }
 
   //
   // Set a new URL or VIEW to be active, this
   // also hides all other open views!
+  // 
+  // @param {String} - URL/Hash to display
   //
   function _setActive(url) {
       var viewSelector = '[' + VIEW_ATTRIBUTE + '="' + url + '"]';
@@ -55,10 +73,12 @@ var View = (function(window, document) {
   //
   // @param {String} - Title
   function _setTitle(title) {
-    var titleFirstLetter = title.slice(0,1),
-        titleRemaining = title.slice(1),
-        title = titleFirstLetter.toUpperCase() + titleRemaining; 
-    pageTitle.innerHTML = title + ' '+ TITLE_DEVIDER +' ' + originalTitle;
+    if(options.changeTitle) {
+      var titleFirstLetter = title.slice(0,1),
+          titleRemaining = title.slice(1),
+          title = titleFirstLetter.toUpperCase() + titleRemaining; 
+      pageTitle.innerHTML = title + ' '+ TITLE_DEVIDER +' ' + originalTitle;
+    }
   }
   
   // _initActive
@@ -97,8 +117,9 @@ var View = (function(window, document) {
           // return nothing and skip the Error Page.
           return;
        }
-       output += '<li class="' + className + '"><a href="#'+ view.dataset[VIEW_ATTRIBUTE_NAME] +'">'
-                  + view.dataset[VIEW_ATTRIBUTE_NAME] + '</a></li>';
+       output += '<li class="' + className + '">';
+       output += '<a href="#'+ view.dataset[VIEW_ATTRIBUTE_NAME] +'">';
+       output += view.dataset[VIEW_ATTRIBUTE_NAME] + '</a></li>';
    });
    
    output += '</ul>';
@@ -107,14 +128,18 @@ var View = (function(window, document) {
  }
   
   // Public exposed functions.
+  // All these functions are available
+  // to the View object, like
+  // View.getHash(), View.setOptions(), etc.
   return {
     getHash: _getHash,
     getHtmlMenu: _createMenuHtml,
     
+    setOptions: _setOptions,   
     setHash: _setHash,   
     setActive: _setActive,
     setTitle: _setTitle,
     
-    initActive: _initActive,
+    initActive: _initActive
   }
 }(window, document));

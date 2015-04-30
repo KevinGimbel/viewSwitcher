@@ -170,8 +170,12 @@ View.initActive('home');
 
 <script type="text/javascript">
 document.addEventListener('DOMContentLoaded', function() {
-  View.initActive('home');
+  View.setOptions({
+    changeTitle: false  
+  });
 
+  View.initActive('home');
+  
   var nav = document.querySelector('#nav');
   nav.innerHTML = View.getHtmlMenu('nav__item');
   nav.addEventListener('click', function(event) {
