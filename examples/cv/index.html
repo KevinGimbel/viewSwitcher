@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CV &mdash; ViewSwitcher.js by Kevin Gimbel</title>
+  <meta charset="utf-8" />
+  <base url="http://localhost:8000/">
+  <meta name="theme-color" content="#E91E63" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="stylesheet" href="style.css">
+  <style type="text/css">  
+    
+    .site__navigation a:hover {
+      background: transparent;
+      color: #ddd;
+      border-bottom: none; 
+    }
+    
+    .card-header, .card-content {
+      padding: .5rem 1rem;  
+    }
+    
+    .credit {
+      font-size: .75rem;
+      position: fixed;
+      top: 0;
+      right: 0;
+      padding: 1rem;
+      background: #fff;
+      color: #666;
+    }
+
+    .credit a {
+      color: #666;
+      text-decoration: none;
+      border-bottom: 1px solid #333;  
+      transition: color linear .25s;
+    }
+
+    .credit a:hover {
+      color: #333;  
+    }
+
+    .site__navigation ul {
+      margin: 0;
+    }
+
+    .site__navigation li {
+      text-transform: uppercase;
+      display: inline-block;
+      padding: .5em 2em;
+      background: #fff;
+      border-radius: 3px;
+      margin-right: 1rem;
+    }
+    
+    .site__navigation li a {
+      color: deeppink;
+      text-decoration: none;  
+    }
+  </style>
+
+</head>
+<body>
+<header class="site__header">
+<h1>Example: CV</h1>
+<p>Building a bilingual CV using viewSwitcher.js.</p>
+<nav id="nav" class="site__navigation" id="navigation"></nav>
+
+<div class="credit">
+Inspired by <a href="https://github.com/Haroenv">Haroen</a> | <a href="https://github.com/kevingimbel/viewSwitcher">viewSwitcher v0.0.4</a>
+</div>
+</header>
+<section data-view="de">
+  <aside class="g one-third small-one-whole">
+    <h1>Kevin Gimbel</h1>
+    <h3>Front-End Entwickler, <a href="http://synoa.de">Synoa GmbH</a></h3>
+    <h5 class="quote">I do what I must because I can.</h5>
+  </aside>
+
+  <div class="g two-thirds small-one-whole">
+     <div class="card"> 
+      <div class="card-header"> <h3>Arbeit</h3> 
+      </div> 
+     <div class="card-content">
+     <h4><a href="http://synoa.de">Synoa GmbH</a></h4> <p class="card-meta">Front-End Entwickler
+     (01.01.2014 - heute)</p> 
+     <p>Teil meiner Aufgabe als Front-End Entwickler ist es, die Zugänglichkeit und Barrierefreiheit
+     der Websites unserer Kunden sicherzustellen. Hierzu gehört natürlich Responsive Design und
+     Testing auf verschiedensten Geräten. Eines der meist genutzten Tools ist hierbei der sehr
+     einfache aber effektive <a
+     href="http://lab.maltewassermann.com/viewport-resizer/">Viewport Resizer</a> von Malte
+     Wassermann.</p> </div> </div>
+     
+     <div class="card"> 
+      <div class="card-header"> <h3>Praktika</h3> </div> 
+      <div class="card-content"> <h4>Couquillou, Frankreich</h4> 
+        <p class="card-meta">IT Assistant (June-July 2012)</p> 
+        <p>Als Assistent der IT habe ich meine meiste Zeit mit der Arbeit an Servern verbracht, hierzu
+        gehörte das einrichten und verwalten von RAID Systemen sowie das reinigen und warten der
+        Server. Das wichtigste war hierbei, dass ich vier Wochen in einem Fremdsprachigen Unternehmen
+        gearbeiter habe.</p>
+      </div>
+      <div class="card-content">
+      <h4>WERBEZWERG, Deutschland</h4>
+     <p class="card-meta">Web-/Printdesign (2010-2011)</p> 
+     <p>Bei WERBEZWERG habe ich gelernt Grafiken zu vektorisieren und Designs im Gespräch mit Kunden
+     zu erarbeiten/umzusetzten. Im Verlauf des Praktikums kam ich auch mit den Grundzügen der Web
+     Entwicklung in Kontakt und habe mich daraufhin in diesem Bereich weiterentwickelt.</p>
+     </div> 
+     </div>
+     
+     <div class="card">
+      <div class="card-header">
+        <h3>Schulischer Werdegang</h3> 
+      </div> 
+     <div class="card-content"> <h4>Werner-Heisenberg-Schule, 2011 - 2013</h4> 
+     <p class="card-meta">Staatlich annerkanter Assistens für Informationsverarbeitung - Technik</p> 
+     <p>Nach meinem Jahr bei WERBEZWERG entschied ich mich, mehr in Technik einzusteigen. In den
+     zwei Jahren an der Werner-Heisenberg-Schule lernte ich den Umgang mit Servern, die
+     verschiedenen Netzwerkebenen und wie diese zusammenspielen und einige andere Dinge.</p> 
+     </div> 
+     
+     <div class="card-content">
+     <h4>Sophie-Scholl-Schule</h4> 
+     <p class="card-meta">Realschulabschluss</p> 
+     <p>Die 10 Jahre an der Sophie-Scholl-Schule waren die Standard Schulausbildung für Deutschland.
+     Nebenbei habe ich zu dieser Zeit sehr viel Fotografiert, sowohl privat (Natur, Sport) als auch
+     Events (Konzerte, Tattoo Convention in Frankfurt).</p>
+     </div>
+     </div>
+     
+     <div class="card">
+      <div class="card-header">
+        <h3>Fähigkeiten</h3> 
+      </div> 
+      <div class="card-content">
+        <h4>Programmieren</h4> 
+          <p class="card-meta">Über meine Fähigkeiten reden ist keine meiner Fähigkeiten.</p>
+          
+          <p>Ich habe <u>HTML and CSS seit etwa 2009</u> benutzt um Tumblr Blogs zu gestalten und
+          eigene, kleine Websites zu erstellen. Leider habe ich dabei JavaScript lange Zeit
+          vernachlässigt, 2014 fing ich dann an mich intensiver mit JavaScript und verschiedenen
+          JavaScript Frameworks zu beschäftigen. Zur Zeit ist ReactJS mein "Framework of choice".</p> 
+          
+          </div> <div class="card-content"> <h4>Sprachen</h4> <p
+          class="card-meta">Deutsch (Muttersprache), Englisch (fließend)</p> 
+          <p>Da ich in Deutschland geboren und aufgewachsen bin spreche ich fließen Deutsch. Durch
+          mein Interesse an Videospielen, Musik und Filmen habe ich, neben der Schule, immer ein
+          großes Interesse für Englisch gehabt. Da es Bestandteil meines Alltags ist spreche ich
+          Englisch fließend und versuche, mich so oft wie möglich weiterzubilden.</p> 
+        </div>
+     </div> 
+  </div>
+</section>
+
+
+
+<section data-view="en">
+  <aside class="g one-third small-one-whole">
+    <h1>Kevin Gimbel</h1>
+    <h3>Front-End Developer at <a href="http://synoa.de">Synoa GmbH</a></h3>
+    <h5>I do what I must because I can.</h5>
+  </aside>
+
+  <div class="g two-thirds small-one-whole">
+     <div class="card"> <div class="card-header"> <h3>Work</h3> </div> <div class="card-content">
+     <h4><a href="http://synoa.de">Synoa GmbH</a></h4> <p class="card-meta">Front-End Developer
+     (01.01.2014 - today)</p> <p>As part of my day to day life as Front-End Developer it's my job to
+     assure that our clients websites fit on all screens. To ensure this, I test them with real
+     devices and various browsers. One of the most used is the amazing and simple <a
+     href="http://lab.maltewassermann.com/viewport-resizer/">Viewport Resizer</a> by Malte
+     Wassermann.</p> </div> </div>
+     
+     <div class="card"> <div class="card-header"> <h3>Internships</h3> </div> <div
+     class="card-content"> <h4>Couquillou, France</h4> <p class="card-meta">IT Assistant (June-July
+     2012)</p> <p>As IT Assistant I spent most of my time working with Servers and learning how they
+     work, how to safe data responsively (e.g. by using RAID-Systems and combinations of different
+     RAIDs) and most importantley I learned to work in a english speaking enviorment - which was
+     pretty awesome at the time.</p> </div> <div class="card-content"> <h4>WERBEZWERG, Germany</h4>
+     <p class="card-meta">Web-/Printdesign (2010-2011)</p> <p>My main responsibility at WERBEZWERG
+     was the creation of Flyers and business cards. Beside that I did a lot of vectorization and
+     Photoshop retouching. At the end of the year I also started doing basic Web Development.</p>
+     </div> </div>
+     
+     <div class="card"> <div class="card-header"> <h3>Education</h3> </div> <div
+     class="card-content"> <h4>Werner-Heisenberg-Schule, 2011 - 2013</h4> <p
+     class="card-meta">Nationally certified IT Assistant</p> <p>After one year at WERBEZWERG I
+     decided to join School again to learn some more things in a fun enviourment. I used most of my
+     free time during that periode to learn Web Development - in school I learned all things IT
+     releated, from basic MySQL and PHP to building networks and servers (I mean it, we build a
+     server from a bunch of components - SO rad!)</p> </div> <div class="card-content">
+     <h4>Sophie-Scholl-Schule</h4> <p class="card-meta">High School Diploma</p> <p>The years I
+     attended Sophie-Scholl-Schule were just my general school years required in Germany. During the
+     time I started taking pictures and photographing Concerts and Events - that was fun!</p> </div>
+     </div>
+     
+     <div class="card">
+      <div class="card-header">
+        <h3>Skills</h3> 
+      </div> 
+      <div class="card-content">
+        <h4>Programming</h4> 
+          <p class="card-meta">Talking about my skills is none of my skills</p>
+          
+          <p>I've been doing <u>HTML and CSS since around 2009</u> which marks a good part of my life. I
+          enjoy digging into Code and reading other peoples Source Code. Unfortunately I avoided
+          <u>JavaScript</u> for a long time and started really getting into it around <u>February
+          2014</u> - since then I fell in love with it.</p> <p>I'm also working with PHP daily (Magento;
+              WordPress) but more on the Front-End side by creating and updating templates and themes.</p>
+          <p>For an upcoming Project I started getting into ReactJS and NodeJS more to create a
+          server-side rendered, full-stack JavaScript App. I enjoy JavaScript a lot and ReactJS is my V
+          in MVC of choice.</p> </div> <div class="card-content"> <h4>Languages</h4> <p
+          class="card-meta">German (native), English (fluent)</p> <p>Because I was born and raised in
+          Germany I speak German, even though I enjoy speaking and writing english more. I also prefere
+          to watch TV shows (such as Game of Thrones or Breaking Bad) in English. Due to the fact most of
+          the (Web) Development World is english I also write and tweet in english to increase my 
+          reach.</p> 
+        </div>
+     </div> 
+  </div>
+</section>
+
+<!--
+section[data-view]
+-->
+
+<script type="text/javascript" src="../../../src/viewswitcher.js"></script>
+
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+  View.initActive('de');
+
+  var nav = document.querySelector('#nav');
+  nav.innerHTML = View.getHtmlMenu('nav__item');
+  nav.addEventListener('click', function(event) {
+    event.preventDefault();
+    // viva la regex!
+    var url = event.target.href.match(/#[a-zA-Z0-9]+/)[0].toString().replace('#', '');
+    console.log(url);
+    View.setActive(url);  
+  });
+});
+</script>
+
+</body>
+</html>
