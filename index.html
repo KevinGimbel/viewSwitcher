@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>ViewSwitch</title>
+  <title>ViewSwitcher.js by Kevin Gimbel</title>
   <meta chatset="utf-8" />
   <meta name="theme-color" content="#E91E63" />
   <meta name="viewport" content="width=device-width" />
@@ -19,7 +19,7 @@
 </head>
 <body>
 <header class="site__header">
-  <h1>ViewSwitch <small>v.0.0.3</small></h1>
+  <h1>ViewSwitcher.js <small>v.0.0.4</small></h1>
 <nav id="nav" class="site__navigation" id="navigation"></nav>
 </header>
 <main class="wrapper">
@@ -106,6 +106,18 @@ container. It actually doesn't even need a string passed, viewSwitcher only chec
 </code></pre>
 </div>
 
+<h3>Disabling Options</h3>
+<p>With version 0.0.4 the new <code>setOptions</code> function was introduced. Pass in an object of
+to configure viewSwitcher as you need!</p>
+<p>As of 0.0.4, only <code>changeTitle</code> is supported and can either be <code>true</code> or
+<code>false</code>.</p>
+<div class="highlight">
+<pre class="language-js"><code>
+  View.setOptions({
+    changeTitle: true  
+  });
+</code></pre>
+</div>
 
 <h3>In-page view</h3>
 <p>To active view links inside the page an attribute, <code>data-view-link</code>, can be added to
