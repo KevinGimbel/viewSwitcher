@@ -8,7 +8,8 @@ var View = (function(window, document) {
       ERROR_VIEW = document.querySelector('[' + VIEW_ATTRIBUTE + '="error"]');
 
   var options = {
-    changeTitle: true 
+    changeTitle: true, 
+    setupEvent: true
   }
   
   // select all the views
@@ -32,10 +33,46 @@ var View = (function(window, document) {
   //
   function _setOptions(opts) {
     options = {
-      changeTitle: opts.changeTitle
+      changeTitle: opts.changeTitle,
+      setupEvents: opts.setupEvents
     }  
   }
-
+  
+  //
+  // This function sets up the events viewSwitcher "needs"
+  // As of v0.0.4, it only handles internal and external links
+  // and sets the correct views active.
+  // However, in the future more "generic" event listeners will
+  // be placed here.
+  //
+  function _initEvents() {
+     // we observe for any click inside the document
+      document.addEventListener('click', function(event) {
+        // if it is an A tag (link)
+        if(event.target.nodeName == 'A') {
+        // we create a reference
+        var link = event.target;
+        // see if it has a hash 
+        var hasHash = (link.href.indexOf('#') > -1);
+        // and if there's a url assigned to it
+        var noHttp = !!link.href.match(/(http|s)/gi);
+          // if there's no URL and no hash
+          if(hasHash && noHttp) {
+            // we cancel the event
+            event.preventDefault();
+            // and try to active the view
+            try {
+              var targetView = link.href.match(/#[a-zA-Z0-9]+/)[0].toString().replace('#', '');
+              View.setActive(targetView);  
+            } catch(e) {
+              console.log(e);  
+            }
+          }
+        }
+      });  
+  }
+  
+    _initEvents();
   //
   // Set a new URL or VIEW to be active, this
   // also hides all other open views!
@@ -112,7 +149,7 @@ var View = (function(window, document) {
  function _createMenuHtml(className) {
    var output = '<ul>';
    
-   Array.prototype.forEach.call(views, function(view) {
+     Array.prototype.forEach.call(views, function(view) {
        if(view.dataset.view === '404' || view.dataset.view === 'error' || view.dataset.viewExclude) {
           // return nothing and skip the Error Page.
           return;
@@ -120,7 +157,7 @@ var View = (function(window, document) {
        output += '<li class="' + className + '">';
        output += '<a href="#'+ view.dataset[VIEW_ATTRIBUTE_NAME] +'">';
        output += view.dataset[VIEW_ATTRIBUTE_NAME] + '</a></li>';
-   });
+     });
    
    output += '</ul>';
    
