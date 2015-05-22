@@ -1,15 +1,17 @@
-var View = (function(window, document) {
+var View = (function (window, document) {
+  'use strict';
   var VIEW_ATTRIBUTE = 'data-view',
       VIEW_ATTRIBUTE_NAME = 'view',
       url = window.location.hash,
       pageTitle = document.querySelector('head title'),
       originalTitle = pageTitle.textContent,
       TITLE_DEVIDER = '&mdash;',
-      ERROR_VIEW = document.querySelector('[' + VIEW_ATTRIBUTE + '="error"]');
+      ERROR_VIEW = document.querySelector('[' + VIEW_ATTRIBUTE + '="error"]'),
+      MENU;
 
   var options = {
     changeTitle: true, 
-    setupEvent: true
+    setupEvents: true
   }
   
   // select all the views
@@ -20,8 +22,6 @@ var View = (function(window, document) {
   Array.prototype.forEach.call(views, function(view) {
      view.style.display = 'none'; 
   });
-
-
 
   // SETTERS
   
@@ -69,10 +69,22 @@ var View = (function(window, document) {
             }
           }
         }
-      });  
+      }); 
+    // if there is a MENU set via View.setMenu,
+    // it will be assign the proper events by _initEvents
+    // if event setting is enabled.
+    if(MENU) {
+      this._menu.addEventListener('click', function(event) {
+        event.preventDefault();
+        // Get the VIEW identifier
+        var url = event.target.href.match(/#[a-zA-Z0-9]+/)[0].toString().replace('#', '');
+        View.setActive(url);
+      })
+    }
   }
-  
+  if(options.setupEvents) {
     _initEvents();
+  }
   //
   // Set a new URL or VIEW to be active, this
   // also hides all other open views!
@@ -164,6 +176,19 @@ var View = (function(window, document) {
    return output;
  }
   
+ // _assignMenu
+ // Tell viewSwitcher what Element in the DOM
+ // represents the Navigation
+ // 
+ // @params {Node|String} - Node Element or String (ID/ClassName)
+ // @return nothing
+ function _assignMenu(menu) {
+   if(typeof menu == 'string') {
+     menu = document.querySelector(menu);
+   }
+  MENU = menu;
+ }
+  
   // Public exposed functions.
   // All these functions are available
   // to the View object, like
@@ -176,6 +201,7 @@ var View = (function(window, document) {
     setHash: _setHash,   
     setActive: _setActive,
     setTitle: _setTitle,
+    setMenu: _assignMenu,
     
     initActive: _initActive
   }
